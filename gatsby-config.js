@@ -3,7 +3,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
-
+require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: "WebDev Portfolio",
@@ -28,13 +28,33 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://localhost:1337`,
+        apiURL: `https://guarded-bayou-44859.herokuapp.com`,
         queryLimit: 1000, // Default to 100
         //   contentTypes : `jobs`, `projects`, `blogs`,
         //   singleType : `about`
         //  ONLY ADD TO ARRAY IF YOU HAVE DATA IN STRAPI !!!!
         contentTypes: [`jobs`, `projects`, `blogs`],
         singleTypes: [`about`],
+      },
+    },
+    {
+      resolve: `gatsby-source-cloudinary`,
+      options: {
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+        apiSecret: process.env.CLOUDINARY_API_SECRET,
+        resourceType: `image`,
+        prefix: `gatsby-source-cloudinary/`,
+      },
+    },
+    {
+      resolve: "gatsby-transformer-cloudinary",
+      options: {
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+        apiSecret: process.env.CLOUDINARY_API_SECRET,
+        // This folder will be created if it doesn’t exist.
+        uploadFolder: "gatsby-cloudinary",
       },
     },
     // {
