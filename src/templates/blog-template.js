@@ -18,6 +18,9 @@ const ComponentName = ({ data }) => {
             Blog
           </Link>
         </div>
+        <div>
+          <h2>Test</h2>
+        </div>
       </section>
     </Layout>
   )
